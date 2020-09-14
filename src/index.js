@@ -16,9 +16,12 @@ let API_KEY = 'a8e71c9932b20c4ceb0aed183e6a83bb';
  */
 getWeatherData = (city) => {
 	const URL = 'https://api.openweathermap.org/data/2.5/weather';
-	//HINT: Use template literals to create a url with input and an API key
-
-	//CODE GOES HERE
+	//the full url with the differences params
+	const FULL_URL = `${URL}?q=${city}&appid=${API_KEY}&units=imperial`;
+	//make the fetch
+	const weatherPromise = fetch(FULL_URL);
+	//call the fetch
+	return weatherPromise.then((response) => response.json());
 };
 
 /**
@@ -27,7 +30,8 @@ getWeatherData = (city) => {
  */
 searchCity = () => {
 	const city = document.getElementById('city-input').value;
-	// CODE GOES HERE
+
+	console.table(getWeatherData(city));
 };
 
 /**
